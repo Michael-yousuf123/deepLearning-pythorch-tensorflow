@@ -13,3 +13,15 @@ class CrossEntropy(Loss):
             confidence = np.sum(y_pred_clipped*y_true, axis=1)
         loss_likelihood = -np.log(confidence)
         return loss_likelihood
+    def backward(self, dvalues, y_true):
+        #no of samples
+        samples = len(dvalues)
+        # labels or target values
+        labels = len(dvalues[0])
+        # convert sparse output into one-hot vector
+        if (y_true.shape)==1:
+            y_true = np.eye(labels)[y_true]
+        #calculate crossentropy
+        self.dinputs = -y_true/dvalues
+        #normalize the output
+        self.dinputs = self.dinputs/samples
