@@ -6,6 +6,9 @@ class DenseLayer:
     def __init__(self, ninputs, nneurons):
         """
         """
-    def forward():
+        self.weight = np.random.randn(ninputs, nneurons)
+        self.biases = np.zeros((1, nneurons))
+    def forward(self, inputs):
         """
         """
+        self.output = np.dot(inputs, self.weight) + self.biases
