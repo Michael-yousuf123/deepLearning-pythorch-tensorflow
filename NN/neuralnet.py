@@ -28,7 +28,11 @@ if __name__ == '__main__':
     # Datasets
     X, y = spiral_data(samples =100, classes=3)
     dense = DenseLayer(2, 3)
+    dense2 = DenseLayer(3, 3)
     activation = ReLU()
+    activation2 = SoftMax()
     dense.forward(X)
     activation.forward(dense.output)
-    print(activation.output[:5])
+    dense2.forward(activation.output)
+    activation2.forward(dense2.output)
+    print(activation2.output[:5])
